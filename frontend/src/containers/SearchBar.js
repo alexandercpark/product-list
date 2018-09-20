@@ -62,26 +62,23 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div className="search-bar-filter-container">
           search:
           <input onChange={event => this.updateState('search', event.target.value)} type="text"/>
         </div>
-        <div>
+        <div className="search-bar-filter-container">
         filter by category:
         <Dropdown options={this.props.categories}
                   onChange={event => this.updateState('category', event)}
                   value={this.state.category} 
                   placeholder="Select a Category" />
         </div>
-        <div>
+        <div className="search-bar-filter-container">
         sort by:
         <Dropdown options={this.options.priceSorting}
                   onChange={event => this.updateState('price', event)}
                   value={this.state.price} 
                   placeholder="Select a Price Sort" />
-        </div>
-        <div>
-          page: {this.props.currentPage}
         </div>
       </div>
     );

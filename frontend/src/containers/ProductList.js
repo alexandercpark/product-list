@@ -25,16 +25,20 @@ class ProductList extends Component {
     }
 
     return (
-      <div>
-        {
-          this.props.products.map(product => 
-            <Product product={product} key={product._id}/>
-          )
-        }
-        page:
-        {
-          pages
-        }
+      <div className="product-list-container">
+        <div>
+          {
+            this.props.products.map(product => 
+              <Product product={product} key={product._id}/>
+            )
+          }
+        </div>
+        <div>
+          page:
+          {
+            pages
+          }
+        </div>
       </div>
     );
   }

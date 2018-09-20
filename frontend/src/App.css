@@ -36,3 +36,30 @@ span.page:not(.selectedPage) {
   color:blue;
   text-decoration:underline;
 }
+
+.product {
+  border-width: 5px;
+  margin: 10px;
+  padding: 10px
+}
+
+.product-field {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.product-container {
+  width: 30%;
+  display: inline-block;
+}
+
+.search-bar-filter-container {
+  width: 30%;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.product-list-container {
+  margin: 20px
+}
