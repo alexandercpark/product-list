@@ -20,6 +20,7 @@ class SearchBar extends Component {
         {value: "highest", label: 'Price: High to Low'},
       ]
     };
+
   }
 
   updateState(key, value){
@@ -29,6 +30,12 @@ class SearchBar extends Component {
     this.setState(property, () => this.fetchData())
   }
 
+  componentDidUpdate(){
+    //ugly hack
+    if(this.state.currentPage != this.props.currentPage) {
+      this.updateState('currentPage', this.props.currentPage);
+    }
+  }
   fetchData() {
     let filter = {};
 
@@ -38,6 +45,8 @@ class SearchBar extends Component {
       filter.price = this.state.price.value
     if(this.state.search)
       filter.name = this.state.search
+    if(this.props.currentPage)
+      filter.page = this.props.currentPage;
 
     this.props.fetchProducts(filter);
     this.props.fetchNumPages(filter);
@@ -71,13 +80,16 @@ class SearchBar extends Component {
                   value={this.state.price} 
                   placeholder="Select a Price Sort" />
         </div>
+        <div>
+          page: {this.props.currentPage}
+        </div>
       </div>
     );
   }
 }
 
-function mapStateToProps({products, categories}) {
-  return {products, categories};
+function mapStateToProps({products, categories, currentPage}) {
+  return {products, categories, currentPage};
 }
  function mapDispatchToProps(dispatch) {
   return bindActionCreators({fetchProducts, fetchCategories, fetchNumPages}, dispatch);

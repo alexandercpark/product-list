@@ -9,7 +9,6 @@ import Product from '../components/Product';
 class ProductList extends Component {
 
   setCurrentPage(pageNumber) {
-    console.log(pageNumber);
     this.props.setCurrentPage(pageNumber);
   }
 
@@ -24,7 +23,6 @@ class ProductList extends Component {
           {i}
         </span>);
     }
-    console.log(this.props, pages);
 
     return (
       <div>
