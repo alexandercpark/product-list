@@ -52,10 +52,8 @@ router.get('/products', (req, res, next) => {
   filter = req.query.category ? {...filter, category:req.query.category} : {}
   //optional name filtering
   var nameRegex = new RegExp(req.query.name);
-  console.log(nameRegex);
   filter = req.query.name ? {...filter, name: {$regex: nameRegex, $options: 'i'}} : filter
 
-  console.log(filter);
   //optional sorting
   const sort = {};
   switch(req.query.price) {
@@ -97,7 +95,7 @@ router.get('/products/pages', (req, res, next) => {
       return next(error);
     
     let pages = Math.ceil(count / perPage)
-    res.send(pages);
+    res.json(pages);
   })
 })
 

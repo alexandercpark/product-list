@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import { fetchProducts, fetchCategories } from '../actions'
+import { fetchProducts, fetchCategories, fetchNumPages } from '../actions'
 
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
@@ -26,10 +26,10 @@ class SearchBar extends Component {
     let property = {};
     property[key] = value;
 
-    this.setState(property, () => this.fetchNewProducts())
+    this.setState(property, () => this.fetchData())
   }
 
-  fetchNewProducts() {
+  fetchData() {
     let filter = {};
 
     if(this.state.category)
@@ -40,13 +40,14 @@ class SearchBar extends Component {
       filter.name = this.state.search
 
     this.props.fetchProducts(filter);
+    this.props.fetchNumPages(filter);
+    this.props.fetchCategories();
   }
 
 
 
   componentDidMount() {
-    this.props.fetchProducts();
-    this.props.fetchCategories();
+    this.fetchData();
   }
 
   render() {
@@ -79,7 +80,7 @@ function mapStateToProps({products, categories}) {
   return {products, categories};
 }
  function mapDispatchToProps(dispatch) {
-  return bindActionCreators({fetchProducts, fetchCategories}, dispatch);
+  return bindActionCreators({fetchProducts, fetchCategories, fetchNumPages}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
