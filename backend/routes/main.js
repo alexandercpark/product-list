@@ -88,13 +88,16 @@ router.get('/products/categories', (req, res, next) => {
   })
 })
 
-router.get('/products/count', (req, res, next) => {
+router.get('/products/pages', (req, res, next) => {
   let filter = req.query.category ? {category:req.query.category} : {}
+  const perPage = 9
+
   Product.count(filter, (error, count) => {
     if(error)
       return next(error);
     
-    res.send({count})
+    let pages = Math.ceil(count / perPage)
+    res.send(pages);
   })
 })
 
