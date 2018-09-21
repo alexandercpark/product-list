@@ -46,8 +46,7 @@ router.get('/products', (req, res, next) => {
   // return the first page by default
   const page = req.query.page || 1
 
-  let filter = {};
-  
+  let filter = {}
   //optional category filtering
   filter = req.query.category ? {...filter, category:req.query.category} : {}
   //optional name filtering
@@ -76,26 +75,19 @@ router.get('/products', (req, res, next) => {
       if (err)
         return next(err)
 
-      res.send(products)
+        Product.count(filter, (error, count) => {
+          if(error)
+            return next(error);
+          
+          let pages = Math.ceil(count / perPage)
+          res.json({pages, products});
+        })
     })
 })
 
 router.get('/products/categories', (req, res, next) => {
   Product.distinct("category", (error, categories) => {
     res.send(categories)
-  })
-})
-
-router.get('/products/pages', (req, res, next) => {
-  let filter = req.query.category ? {category:req.query.category} : {}
-  const perPage = 9
-
-  Product.count(filter, (error, count) => {
-    if(error)
-      return next(error);
-    
-    let pages = Math.ceil(count / perPage)
-    res.json(pages);
   })
 })
 

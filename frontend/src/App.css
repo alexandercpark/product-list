@@ -51,6 +51,7 @@ span.page:not(.selectedPage) {
 .product-container {
   width: 30%;
   display: inline-block;
+  margin: 10px;
 }
 
 .search-bar-filter-container {

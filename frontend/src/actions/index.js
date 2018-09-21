@@ -4,8 +4,6 @@ const ROOT_URL = "http://localhost:8000"
 
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS"
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES"
-export const FETCH_NUM_PAGES = "FETCH_NUM_PAGES"
-export const SET_PAGE = "SET_PAGE"
 
 
 function _buildFilterOptions(query) {
@@ -40,23 +38,4 @@ export function fetchCategories() {
     type: FETCH_CATEGORIES,
     payload: request
   };
-}
-
-export function fetchNumPages(query = {}) {
-  let queryUrl = _buildFilterOptions(query);
-
-  let url = ROOT_URL + '/products/pages' + queryUrl;
-  const request = axios.get(url, {headers: { "Content-Type" : "application/json"}})
-
-  return {
-    type: FETCH_NUM_PAGES,
-    payload: request
-  };
-}
-
-export function setCurrentPage(page) {
-  return {
-    type: SET_PAGE,
-    payload: page
-  }
 }
