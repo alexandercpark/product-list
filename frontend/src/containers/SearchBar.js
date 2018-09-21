@@ -55,7 +55,7 @@ class SearchBar extends Component {
   }
 
   pageClickHandler(i) {
-    if(i != this.state.currentPage)
+    if(i !== this.state.currentPage)
       this.updateState('currentPage', i);
   }
 
@@ -63,7 +63,7 @@ class SearchBar extends Component {
     let pages = [];
     for(let i = 1; i < this.props.pages + 1; i++) {
       pages.push(
-        <span className={i == this.state.currentPage ? "page selectedPage" : "page"}
+        <span className={i === this.state.currentPage ? "page selectedPage" : "page"}
               onClick={() => this.pageClickHandler(i)}
               key={i}>
           {i}
@@ -112,7 +112,7 @@ function mapStateToProps({categories, currentPage, productMetadata}) {
     categories,
     currentPage,
     pages:productMetadata.pages
-  };;
+  };
 }
  function mapDispatchToProps(dispatch) {
   return bindActionCreators({fetchProducts, fetchCategories}, dispatch);
