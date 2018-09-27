@@ -26,7 +26,7 @@ class SearchBar extends Component {
 
   updateState(key, value){
     //a little hacky...
-    let property = {currentPage: 1};
+    let property = {};//currentPage: 1};
     property[key] = value;
 
     this.setState(property, () => this.fetchData())
@@ -107,7 +107,9 @@ class SearchBar extends Component {
   }
 }
 
-function mapStateToProps({categories, currentPage, productMetadata}) {
+function mapStateToProps(state) {
+  console.log(state);
+  let {categories, currentPage, productMetadata} = state;
   return {
     categories,
     currentPage,

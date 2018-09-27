@@ -14,7 +14,11 @@ function _buildFilterOptions(query) {
     if (query.hasOwnProperty(key))
       queryParams.push(key + "=" + query[key])
   
-  return queryParams.length > 0 ? '?' + queryParams.join('&') : '';
+  if(queryParams.length > 0)
+    return '?' + queryParams.join('&');
+  else
+    return '';
+  //return queryParams.length > 0 ? '?' + queryParams.join('&') : '';
 }
 
 export function fetchProducts(query = {}) {
