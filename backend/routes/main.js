@@ -2,7 +2,7 @@ const router = require('express').Router()
 const faker = require('faker')
 const Product = require('../models/product')
 
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#Getting_a_random_number_between_two_values#Getting_a_random_integer_between_two_values
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#Getting_a_random_number_between_two_values
 function _getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
